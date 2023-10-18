@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/calculate")
+@RequestMapping("/calculate/{expression}")
 public class ExpressionController {
 
     private CalculateService calculateService;
@@ -13,8 +13,8 @@ public class ExpressionController {
         this.calculateService = calculateService;
     }
 
-    @GetMapping("/{expression}")
-    public ResponseEntity<Object> getAns(@PathVariable(name="expression") String expression){
+    @GetMapping
+    public ResponseEntity<?> getAns(@PathVariable("expression") String expression){
         return ResponseEntity.ok(calculateService.getAnswer(expression));
     }
 }
